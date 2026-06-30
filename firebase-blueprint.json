@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "user": {
+      "title": "User",
+      "description": "User profile with personal and security settings.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "displayName", "createdAt"]
+    },
+    "group": {
+      "title": "Group",
+      "description": "A shared expense group containing multiple members.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "memberIds": { "type": "array" },
+        "currency": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "createdBy", "memberIds", "currency", "createdAt"]
+    },
+    "groupMember": {
+      "title": "Group Member",
+      "description": "A member inside a shared group, can be a registered user or a placeholder name.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "joinedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "joinedAt"]
+    },
+    "expense": {
+      "title": "Expense",
+      "description": "An itemized expense log inside a shared group.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "groupId": { "type": "string" },
+        "description": { "type": "string" },
+        "amount": { "type": "number" },
+        "currency": { "type": "string" },
+        "paidById": { "type": "string" },
+        "splitType": { "type": "string" },
+        "splitDetails": { "type": "object" },
+        "date": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "category": { "type": "string" },
+        "isSettlement": { "type": "boolean" }
+      },
+      "required": ["id", "groupId", "description", "amount", "currency", "paidById", "splitType", "splitDetails", "date", "createdBy", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "user",
+      "description": "User profiles"
+    },
+    "groups/{groupId}": {
+      "schema": "group",
+      "description": "Shared expense groups"
+    },
+    "groups/{groupId}/members/{memberId}": {
+      "schema": "groupMember",
+      "description": "Members of a specific group"
+    },
+    "groups/{groupId}/expenses/{expenseId}": {
+      "schema": "expense",
+      "description": "Itemized expense logs within a group"
+    }
+  }
+}

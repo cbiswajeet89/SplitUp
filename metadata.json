@@ -1,0 +1,6 @@
+{
+  "name": "Splitwise Expense Tracker",
+  "description": "An advanced expense tracker like Splitwise with user authentication, shared groups, itemized expense logs, currency conversion, and automated monthly reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
